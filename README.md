@@ -1,12 +1,68 @@
 # React + Vite
+# Student Score Entry Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+This application allows teachers to enter and submit student scores for various subjects. It integrates with Google Sheets for data storage.
 
-Currently, two official plugins are available:
+## Features
+- Student details entry (Full Name, Admission Number)
+- Support for multiple subjects:
+  - English
+  - Mathematics
+  - Geography
+  - Biology
+  - Civic Education
+  - Chemistry
+  - Arabic
+  - Hausa
+  - Home Economics
+  - Elementary Science
+- CA and Exam score entry for each subject
+- Form validation
+- Real-time error feedback
+- Google Sheets integration
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Setup Instructions
 
-## Expanding the ESLint configuration
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
+- Google account
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Installation
+```bash
+# Clone the repository
+git clone [repository-url]
+cd student-score-entry
+
+# Install dependencies
+npm install
+```
+
+### Google Apps Script Setup
+1. Create a new Google Sheet
+2. Go to Extensions > Apps Script
+3. Copy and paste the provided Apps Script code
+4. Deploy as web app:
+   - Click "Deploy" > "New deployment"
+   - Choose "Web app"
+   - Set "Execute as" to "Me"
+   - Set "Who has access" to "Anyone"
+   - Click "Deploy"
+5. Copy the deployment URL
+6. Update the URL in App.jsx
+
+### Development
+```bash
+# Start development server
+npm run dev
+```
+
+### Building for Production
+```bash
+# Create production build
+npm run build
+
+
+
+
