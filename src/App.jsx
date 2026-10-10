@@ -87,16 +87,16 @@ const App = () => {
 
         // If there are no errors, proceed with submission
         if (Object.keys(validationErrors).length === 0) {
+            const scriptUrl = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL?.trim();
+            if (!scriptUrl) {
+                setSubmitMessage('Google Apps Script is not configured. Set VITE_GOOGLE_APPS_SCRIPT_URL and restart the app.');
+                return;
+            }
+
             setIsSubmitting(true);
 
-            // --- BACKEND INTEGRATION POINT ---
-            // Here is where you would send the `formData` to your backend (e.g., a Google Apps Script URL).
-            // For now, we'll simulate an API call with a timeout.
-            console.log('Form data is valid and ready to be sent:', formData);
-
             try {
-                // Example of what a fetch call to Google Sheets might look like:
-                await fetch('https://script.google.com/macros/s/AKfycbyFDQt9JWXXIV02hOmUB7-AIHXbiJ3H8f5lGFmNRHIgZyf25_d09FW-Mqr9WjtGGLw-uA/exec', {
+                await fetch(scriptUrl, {
                     method: 'POST',
                     mode: 'no-cors',
                     redirect: 'follow',
@@ -106,20 +106,7 @@ const App = () => {
                     body: JSON.stringify(formData)
                 });
 
-
-                // Simulating network delay
-                await new Promise(resolve => setTimeout(resolve, 1500));
-
-                setSubmitMessage('Student scores submitted successfully!');
-
-                // Optionally, reset the form after successful submission
-                setFormData({
-                    fullName: '', admissionNumber: '', englishCA: '', englishExam: '',
-                    mathematicsCA: '', mathematicsExam: '', geographyCA: '', geographyExam: '',
-                    biologyCA: '', biologyExam: '', civicCA: '', civicExam: '', chemistryCA: '', chemistryExam: '',
-                    arabicCA: '', arabicExam: '',hausaCA: '', hausaExam: '',
-                    homeEconomicsCA: '', homeEconomicsExam: '', elementaryScienceCA: '', elementaryScienceExam: '',
-                });
+                setSubmitMessage('Scores submitted successfully!');
 
             } catch (error) {
                 console.error('Submission Error:', error);
